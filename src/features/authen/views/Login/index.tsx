@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useLoginMutation } from 'features/Auth/services';
+import { useLoginMutation } from 'features/authen/services';
 import { RoutePath } from 'shared/constants/RouteConst';
 import { useState } from 'react';
 
@@ -23,7 +23,7 @@ const Login = () => {
         autoComplete="off"
         className="flex w-full min-w-fit max-w-md flex-col border border-solid rounded border-blue-400 p-6 gap-6"
       >
-        <h1 className='text-center font-semibold text-xl'>Welcome to Login</h1>
+        <h1 className="text-center font-semibold text-xl">Welcome to Login</h1>
         <div>
           <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Your email
@@ -69,7 +69,7 @@ const Login = () => {
       </form>
     </div>
   ) : (
-    <Navigate to={`/${RoutePath.Home}`} replace />
+    <Navigate to={`/${RoutePath.Dashboard}`} replace />
   );
 };
 

@@ -1,8 +1,9 @@
 {
-  "name": "react-m2t-template",
+  "name": "react-template",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-tailwind/react": "^2.1.8",
     "@reduxjs/toolkit": "^1.8.0",
     "classnames": "^2.3.2",
     "i18next": "^23.7.11",

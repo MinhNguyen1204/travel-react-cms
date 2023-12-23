@@ -10,43 +10,34 @@ const lngs = {
 const PrivateLayout = ({ children }: any) => {
   const [isCheckRole, setIsCheckRole] = useState<boolean>(false);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
-  const [sidebarData] = useState<ISideBarData[]>(
-    [
-      {
-        title: "Dashboard",
-        path: "/en/dashboard",
-        roles: ["admin"],
-        children: [
-          { title: "Main", path: "/en/dashboard/main", roles: ["user"] },
-          { title: "Analytics", path: "/en/dashboard/analytic", roles: ["admin"] },
-        ],
+  const [sidebarData] = useState<ISideBarData[]>([
+    {
+      title: 'Dashboard',
+      path: '/dashboard',
+      roles: ['admin'],
+      children: [
+        { title: 'Main', path: 'dashboard/main', roles: ['user'] },
+        { title: 'Analytics', path: '/dashboard/analytic', roles: ['admin'] },
+      ],
+    },
+    { title: 'Blog', path: '/blog', roles: ['admin'] },
+    { title: 'Products', path: '/products' },
+  ]);
+  useEffect(() => {}, []);
 
-      },
-      { title: "Blog", path: "/en/blog", roles: ["admin"] }
-    ]
-  );
-  useEffect(() => {
-
-  }, []);
-
-  <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} sidebarData={sidebarData} />
+  <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} sidebarData={sidebarData} />;
   const { t } = useTranslation();
 
-
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="w-full text-gray-700 antialiased">
       <div className="flex">
-
-
         <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} sidebarData={sidebarData} />
 
-        <main className="text-xl">{children}</main>
-
-
+        <main className="text-xl">
+          <Outlet />
+        </main>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
-export type Loader = {
+type LoaderState = {
   isLoading: boolean;
   isError: boolean;
   counter: number;
-}
+};

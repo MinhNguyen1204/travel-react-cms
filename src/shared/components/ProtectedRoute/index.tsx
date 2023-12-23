@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-import { getIsAuthenticated } from "features/Auth/storage";
+import { getIsAuthenticated } from "features/authen/storage";
 // import AccessDenied from '../../views/AccessDenied/index';
 
 const ProtectedRoute = ({

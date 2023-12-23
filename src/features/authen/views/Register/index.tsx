@@ -1,4 +1,4 @@
-import { useRegisterMutation } from 'features/Auth/services';
+import { useRegisterMutation } from 'features/authen/services';
 import { useState } from 'react';
 import { RoutePath } from 'shared/constants/RouteConst';
 
@@ -62,7 +62,7 @@ const Register = () => {
           </button>
           <div className="flex justify-center">
             <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-            Already have account? Login&nbsp;
+              Already have account? Login&nbsp;
               <a className="text-blue-600 hover:underline dark:text-blue-500" href={RoutePath.Login}>
                 here
               </a>

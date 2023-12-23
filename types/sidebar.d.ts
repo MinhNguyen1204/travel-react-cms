@@ -9,7 +9,7 @@ interface ISideBarData {
   title: string;
   children?: ISideBarData[];
   path: string;
-  roles: string[];
+  roles?: string[];
 }
 
 interface ISideBarLinkGroupProps {

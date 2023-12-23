@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const homeQuery = createApi({
+const dashboardQuery = createApi({
   reducerPath: 'homeAPI',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://jsonplaceholder.typicode.com',
@@ -8,13 +8,10 @@ const homeQuery = createApi({
   endpoints: (builder) => ({
     getPosts: builder.query<any, void>({
       query: () => `posts`,
-    })
+    }),
   }),
 });
 
-export default homeQuery;
+export default dashboardQuery;
 
-export const {
-  useGetPostsQuery,
-} = homeQuery;
-
+export const { useGetPostsQuery } = dashboardQuery;

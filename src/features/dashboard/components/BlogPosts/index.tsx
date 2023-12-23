@@ -1,5 +1,5 @@
-import { PostType } from 'features/Home/types/post';
-import BlogPostItem from 'features/Home/components/BlogPostItem';
+import BlogPostItem from "../BlogPostItem";
+
 
 const BlogPosts = ({ posts }: { posts: PostType[] }) => (
   <>

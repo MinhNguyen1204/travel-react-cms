@@ -1,15 +1,17 @@
 import { MiddlewareArray } from '@reduxjs/toolkit';
-import { AuthRoutes, authSlice } from './Auth';
-import { HomeRoutes } from './Home';
-import authQuery from "./Auth/services";
-import homeQuery from "./Home/services";
+import { AuthRoutes, authSlice } from './authen';
+import { DashboardRoutes } from './dashboard';
+import authQuery from './authen/services';
+import homeQuery from './dashboard/services';
+import { ProductsRoutes } from './products';
 
 const middlewares = new MiddlewareArray();
 
 export const AppRoutes = [
   // Add more modules
-  ...HomeRoutes,
   ...AuthRoutes,
+  ...DashboardRoutes,
+  ...ProductsRoutes
 ];
 
 export const AppSlices = {
@@ -19,10 +21,7 @@ export const AppSlices = {
 
 export const AppQueries = {
   [homeQuery.reducerPath]: homeQuery.reducer,
-  [authQuery.reducerPath]: authQuery.reducer
-}
+  [authQuery.reducerPath]: authQuery.reducer,
+};
 
-export const AppMiddleware = middlewares.concat(
-  authQuery.middleware,
-  homeQuery.middleware
-);
+export const AppMiddleware = middlewares.concat(authQuery.middleware, homeQuery.middleware);

@@ -1,4 +1,3 @@
-import { PostType } from 'features/Home/types/post';
 import './style.scss';
 
 const BlogPostItem = ({ post }: { post: PostType }) => (
