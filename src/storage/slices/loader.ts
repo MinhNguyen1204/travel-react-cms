@@ -1,4 +1,9 @@
-import { createSlice, isFulfilled, isPending, isRejected } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  isFulfilled,
+  isPending,
+  isRejected,
+} from "@reduxjs/toolkit";
 
 const initialState: LoaderState = {
   isLoading: false,
@@ -7,7 +12,7 @@ const initialState: LoaderState = {
 };
 
 const loaderSlice = createSlice({
-  name: 'loader',
+  name: "loader",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

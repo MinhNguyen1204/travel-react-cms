@@ -1,18 +1,19 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import SideBar from './SideBar/sidebar';
-import Header from './Header';
-import { useSelector } from 'react-redux';
-import { sideBarData } from 'shared/constants/SideBarConst';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { RoutePath, RouteRoles } from 'shared/constants/RouteConst';
-import { getUserInfo } from 'features/authen';
-import { UserRole } from 'features/authen/constants';
-import { getFirstPathBySideBar } from 'shared/utils/Path';
+import { useEffect, useState } from "react";
+import { getUserInfo } from "features/authen";
+import { UserRole } from "features/authen/constants";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { RoutePath, RouteRoles } from "shared/constants/RouteConst";
+import { sideBarData } from "shared/constants/SideBarConst";
+import { getFirstPathBySideBar } from "shared/utils/Path";
+
+import SideBar from "./SideBar/sidebar";
+import Header from "./Header";
 const lngs = {
-  en: { nativeName: 'English' },
-  jp: { nativeName: 'Japan' },
-  vi: { nativeName: 'Vietnam' },
+  en: { nativeName: "English" },
+  jp: { nativeName: "Japan" },
+  vi: { nativeName: "Vietnam" },
 };
 
 interface IProps {
@@ -24,32 +25,29 @@ const PrivateLayout = ({ children }: any) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const user = useSelector(getUserInfo);
-  const [sideBar, setSidebarData] = useState<ISideBarData[]>(
-    []
-  );
+  const [sideBar, setSidebarData] = useState<ISideBarData[]>([]);
 
   const onRoleCheck = (_sidebar: ISideBarData[]): ISideBarData[] => {
     return _sidebar.filter((data) => {
       if (user.role === UserRole.ADMIN || !data.roles?.length) return true;
       if (!data.roles.includes(user.role)) {
-        return false
+        return false;
       }
       if (!!data.children?.length) {
         data.children = onRoleCheck(data.children);
       }
       return true;
     });
-  }
+  };
 
   const redirect = (_sidebar: ISideBarData[]) => {
     if (_sidebar.length === 0) {
-      navigate("/404")
+      navigate("/404");
       return;
     }
     const path = getFirstPathBySideBar(_sidebar);
     navigate(path);
-
-  }
+  };
   useEffect(() => {
     if (user === null) return;
     const newSideBar = onRoleCheck(sideBarData);
@@ -73,10 +71,8 @@ const PrivateLayout = ({ children }: any) => {
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
             {children}
           </div>
-
         </main>
       </div>
-
     </div>
   );
 };

@@ -1,7 +1,8 @@
-import LoadingIndicator from 'shared/components/LoadingIndicator';
-import './style.scss';
-import BlogPosts from 'features/dashboard/components/BlogPosts';
-import { useGetPostsQuery } from 'features/dashboard/services';
+import BlogPosts from "features/dashboard/components/BlogPosts";
+import { useGetPostsQuery } from "features/dashboard/services";
+import LoadingIndicator from "shared/components/LoadingIndicator";
+
+import "./style.scss";
 
 const Home = () => {
   const { data, isLoading } = useGetPostsQuery();

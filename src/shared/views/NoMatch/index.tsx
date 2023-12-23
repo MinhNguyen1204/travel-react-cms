@@ -1,3 +1,3 @@
-const NoMatch = () => (<>404!</>);
+const NoMatch = () => <>404!</>;
 
 export default NoMatch;

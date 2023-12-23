@@ -1,5 +1,4 @@
-
 interface IUser {
   name: string;
-  role: string
+  role: string;
 }

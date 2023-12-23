@@ -1,9 +1,0 @@
-{
-  "importOrder": ["^layouts/(.*)$", "*/components/(.*)$", "^storage/(.*)$", "^shared/(.*)$", "^assets/(.*)$", "^[./]"],
-  "importOrderCaseInsensitive": true,
-  "importOrderMergeDuplicateImports": true,
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true,
-  "printWidth": 150,
-  "singleQuote": true
-}

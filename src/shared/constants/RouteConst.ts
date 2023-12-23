@@ -1,12 +1,12 @@
 import { UserRole } from "features/authen/constants";
 
 export enum RoutePath {
-  Root = '',
-  Auth = 'auth',
-  Login = 'login',
-  Register = 'register',
-  Dashboard = 'dashboard',
-  Products = 'products',
+  Root = "",
+  Auth = "auth",
+  Login = "login",
+  Register = "register",
+  Dashboard = "dashboard",
+  Products = "products",
 }
 
 export const RouteRoles = {
@@ -14,4 +14,4 @@ export const RouteRoles = {
   blog: [UserRole.ADMIN],
   dashboard: [UserRole.ADMIN],
   products: [UserRole.ADMIN],
-}
+};

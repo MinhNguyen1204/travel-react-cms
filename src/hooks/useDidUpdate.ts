@@ -1,9 +1,6 @@
-import React, { DependencyList, useEffect, useRef } from 'react';
+import React, { DependencyList, useEffect, useRef } from "react";
 
-const useDidUpdate = (
-  cb: () => void,
-  deps: DependencyList,
-) => {
+const useDidUpdate = (cb: () => void, deps: DependencyList) => {
   const mounted = useRef<boolean>(false);
 
   useEffect(() => {
@@ -13,7 +10,7 @@ const useDidUpdate = (
     }
     cb();
   }, deps);
-  return null
+  return null;
 };
 
 export default useDidUpdate;

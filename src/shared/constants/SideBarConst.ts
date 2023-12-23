@@ -1,4 +1,4 @@
-export const sideBarData: ISideBarData[] = ([
+export const sideBarData: ISideBarData[] = [
   {
     title: "Dashboard",
     path: "/dashboard",
@@ -7,7 +7,6 @@ export const sideBarData: ISideBarData[] = ([
       { title: "Main", path: "/dashboard/main", roles: ["user"] },
       { title: "Analytics", path: "/dashboard/analytic", roles: ["admin"] },
     ],
-
   },
-  { title: "Products", path: "/products", roles: ["admin"] }
-])
+  { title: "Products", path: "/products", roles: ["admin"] },
+];

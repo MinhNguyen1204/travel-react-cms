@@ -1,9 +1,9 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import commonEN from 'assets/translations/en/common.json';
-import commonJP from 'assets/translations/jp/common.json';
-import commonVI from 'assets/translations/vi/common.json';
+import commonEN from "assets/translations/en/common.json";
+import commonJP from "assets/translations/jp/common.json";
+import commonVI from "assets/translations/vi/common.json";
+import i18n from "i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import { initReactI18next } from "react-i18next";
 
 i18n
   // detect user language
@@ -15,8 +15,8 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     debug: true,
-    fallbackLng: 'en',
-    defaultNS: ['common'],
+    fallbackLng: "en",
+    defaultNS: ["common"],
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },

@@ -1,18 +1,20 @@
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from 'storage/store';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+import store from "storage/store";
+
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
 // import i18n (needs to be bundled ;))
-import '../i18n';
+import "../i18n";
 ReactDOM.render(
   <Router>
     <Provider store={store}>
       <App />
     </Provider>
   </Router>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
