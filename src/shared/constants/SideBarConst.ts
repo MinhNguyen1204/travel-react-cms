@@ -1,13 +1,13 @@
 export const sideBarData: ISideBarData[] = ([
   {
     title: "Dashboard",
-    path: "/",
+    path: "/dashboard",
     roles: ["user"],
     children: [
-      { title: "Main", path: "/", roles: ["user"] },
-      { title: "Analytics", path: "/analytic", roles: ["admin"] },
+      { title: "Main", path: "/dashboard/main", roles: ["user"] },
+      { title: "Analytics", path: "/dashboard/analytic", roles: ["admin"] },
     ],
 
   },
-  { title: "Blog", path: "/blog", roles: ["admin"] }
+  { title: "Products", path: "/products", roles: ["admin"] }
 ])

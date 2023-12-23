@@ -3,11 +3,12 @@ import { useTranslation } from 'react-i18next';
 import SideBar from './SideBar/sidebar';
 import Header from './Header';
 import { useSelector } from 'react-redux';
-import { getUserInfo } from 'features/Auth';
 import { sideBarData } from 'shared/constants/SideBarConst';
-import { UserRole } from 'features/auth/constants';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { RoutePath, RouteRoles } from 'shared/constants/RouteConst';
+import { getUserInfo } from 'features/authen';
+import { UserRole } from 'features/authen/constants';
+import { getFirstPathBySideBar } from 'shared/utils/Path';
 const lngs = {
   en: { nativeName: 'English' },
   jp: { nativeName: 'Japan' },
@@ -23,14 +24,13 @@ const PrivateLayout = ({ children }: any) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const user = useSelector(getUserInfo);
-
   const [sideBar, setSidebarData] = useState<ISideBarData[]>(
     []
   );
 
   const onRoleCheck = (_sidebar: ISideBarData[]): ISideBarData[] => {
     return _sidebar.filter((data) => {
-      if (user.role === UserRole.ADMIN) return true;
+      if (user.role === UserRole.ADMIN || !data.roles?.length) return true;
       if (!data.roles.includes(user.role)) {
         return false
       }
@@ -46,28 +46,20 @@ const PrivateLayout = ({ children }: any) => {
       navigate("/404")
       return;
     }
-    for (let i = 0; i < _sidebar.length; i++) {
-      if (!_sidebar[i].children?.length) {
-        navigate(_sidebar[i].path);
-        break;
-      }
-      const childPath = _sidebar[i].children?.find(item => item.path)?.path;
-      if (childPath) {
-        navigate(childPath);
-        break;
-      }
+    const path = getFirstPathBySideBar(_sidebar);
+    navigate(path);
 
-    }
   }
   useEffect(() => {
+    if (user === null) return;
     const newSideBar = onRoleCheck(sideBarData);
-    const currentRouteRoles = RouteRoles[RoutePath["Blog"]];
+    const currentRouteRoles = RouteRoles[RoutePath["Products"]];
 
     if (!currentRouteRoles.includes(user.role as UserRole)) {
       redirect(newSideBar);
     }
     setSidebarData(newSideBar);
-  }, []);
+  }, [user]);
 
   return (
     <div className="w-full flex h-screen overflow-hidden antialiased bg-slate-100">
@@ -75,7 +67,7 @@ const PrivateLayout = ({ children }: any) => {
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-        <Header />
+        <Header sidebarOpen={true} setSidebarOpen={() => null} />
 
         <main className="text-xl">
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">

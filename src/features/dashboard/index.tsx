@@ -1,29 +1,35 @@
 import { UserRole } from 'features/authen/constants';
 import PrivateLayout from 'layouts/PrivateLayout';
 import ProtectedRoute from 'shared/components/ProtectedRoute';
-import { RoutePath } from 'shared/constants/RouteConst';
+import { RoutePath, RouteRoles } from 'shared/constants/RouteConst';
 import DashboardView from './views/DashboardView';
+import AnalyticView from 'features/Analytic';
+import { RouteObject } from 'react-router-dom';
 
-export const DashboardRoutes = [
+
+const DashboardMain = "main";
+const DashboardAnalytic = "analytic";
+
+export const DashboardRoutes: RouteObject[] = [
   {
-    path: RoutePath.Root,
-    element: <PrivateLayout />,
+    path: RoutePath.Dashboard,
+    element: <ProtectedRoute />,
     children: [
       {
-        index: true,
-        path: RoutePath.Root,
+
+        path: DashboardMain,
         element: (
-          <ProtectedRoute roles={[UserRole.ADMIN]}>
+          <PrivateLayout roles={RouteRoles[RoutePath.Dashboard]}>
             <DashboardView />
-          </ProtectedRoute>
+          </PrivateLayout>
         ),
       },
       {
-        path: RoutePath.Dashboard,
+        path: DashboardAnalytic,
         element: (
-          <ProtectedRoute roles={[UserRole.ADMIN]}>
-            <DashboardView />
-          </ProtectedRoute>
+          <PrivateLayout roles={RouteRoles[RoutePath.Dashboard]}>
+            <AnalyticView />
+          </PrivateLayout>
         ),
       },
     ],

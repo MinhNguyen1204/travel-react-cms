@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AnalyticPage = () => {
+const AnalyticView = () => {
   return (
     <div>
       Analytic page...
@@ -8,4 +8,4 @@ const AnalyticPage = () => {
   );
 };
 
-export default AnalyticPage;
+export default AnalyticView;

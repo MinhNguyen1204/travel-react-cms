@@ -1,4 +1,4 @@
-import { UserRole } from "features/auth/constants";
+import { UserRole } from "features/authen/constants";
 
 export const DummyUser: { [key: string]: IUser } = {
   "QpwL5tke4Pnpja7X4": {
