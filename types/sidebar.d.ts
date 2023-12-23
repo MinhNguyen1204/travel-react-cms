@@ -1,7 +1,5 @@
 interface ISideBarProps {
-  sidebarOpen: boolean;
-  setSidebarOpen: (isOpen: boolean) => void;
-  sidebarData: ISideBarData[];
+  sideBar: ISideBarData[];
 
 }
 
