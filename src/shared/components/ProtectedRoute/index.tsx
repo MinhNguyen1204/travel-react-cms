@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 // import AccessDenied from '../../views/AccessDenied/index';
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { sideBarData } from "shared/constants/SideBarConst";
+import { getLocal } from "shared/utils/Local";
 import { getFirstPathBySideBar } from "shared/utils/Path";
 
 import LoadingIndicator from "../LoadingIndicator";
@@ -20,7 +21,7 @@ const ProtectedRoute = () => {
     isLoading: userLoading,
     isError,
   } = useMeQuery({
-    token: localStorage.getItem("token") || "",
+    token: getLocal("token") || "",
   });
 
   const isEmtyRoute = pathname.split("/").length < 3;

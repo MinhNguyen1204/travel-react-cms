@@ -1,4 +1,5 @@
 import { DummyUser } from "shared/constants/UserList";
+import { getLocal } from "shared/utils/Local";
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -15,14 +16,14 @@ const authQuery = createApi({
   endpoints: (builder) => ({
     login: builder.mutation<{ token: string }, Partial<UserInfo>>({
       query: (credentials) => ({
-        url: `login`,
+        url: "login",
         method: "POST",
         body: credentials,
       }),
     }),
     register: builder.mutation<UserInfo, UserInfo>({
       query: (credentials) => ({
-        url: `register`,
+        url: "register",
         method: "POST",
         body: credentials,
       }),
@@ -30,7 +31,7 @@ const authQuery = createApi({
     me: builder.query<any, { token: string }>({
       query: (body) => `/${body.token}`,
       transformResponse(baseQueryReturnValue, meta, arg) {
-        const token = localStorage.getItem("token") || "";
+        const token = getLocal<string>("token") || "";
         return DummyUser[token];
       },
     }),

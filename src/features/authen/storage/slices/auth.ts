@@ -1,5 +1,6 @@
 import { UserRole } from "features/authen/constants";
 import authQuery from "features/authen/services";
+import { removeLocalByKey, setLocal } from "shared/utils/Local";
 
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -14,7 +15,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     logout: () => {
-      localStorage.removeItem("token");
+      removeLocalByKey("token");
       return initialState;
     },
   },
@@ -32,7 +33,7 @@ const slice = createSlice({
         state.token = action.payload.token;
         state.isAuthenticated = true;
         state.user = { ...action.payload, role: UserRole.ADMIN }; // Fake role
-        localStorage.setItem("token", action.payload.token);
+        setLocal<string>("token", action.payload.token);
       }
     );
   },
