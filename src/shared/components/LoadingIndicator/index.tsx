@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { getLoaderState } from "storage/selectors/loaderSelector";
+
 import "./style.scss";
 
 interface IProps {
@@ -11,12 +12,24 @@ const LoadingIndicator = ({ loading }: IProps) => {
 
   if (!showLoading) return null;
 
-  return <div className="loader-container">
-    <div className="lds-spinner">
-      <div></div><div></div><div></div><div></div><div></div><div></div>
-      <div></div><div></div><div></div><div></div><div></div><div></div>
+  return (
+    <div className="loader-container">
+      <div className="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-  </div>
-}
+  );
+};
 
 export default LoadingIndicator;

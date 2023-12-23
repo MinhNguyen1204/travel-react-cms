@@ -1,18 +1,18 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const productsQuery = createApi({
-  reducerPath: 'productAPI',
+  reducerPath: "productAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://dummyjson.com',
+    baseUrl: "https://dummyjson.com",
   }),
   endpoints: (builder) => ({
     getProducts: builder.query<any, void>({
-      query: () => 'products',
+      query: () => "products",
     }),
     createProduct: builder.mutation<{ title: string }, Partial<any>>({
       query: (credentials) => ({
         url: `products/add`,
-        method: 'POST',
+        method: "POST",
         body: credentials,
       }),
     }),
@@ -22,13 +22,16 @@ const productsQuery = createApi({
     deleteProductById: builder.mutation<string, Partial<any>>({
       query: (id) => ({
         url: `products/${id}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
     }),
-    updateProductById: builder.mutation<{ id: string; title: string }, Partial<any>>({
+    updateProductById: builder.mutation<
+      { id: string; title: string },
+      Partial<any>
+    >({
       query: ({ title, id }) => ({
         url: `products/${id}`,
-        method: 'PUT',
+        method: "PUT",
         body: { title },
       }),
     }),

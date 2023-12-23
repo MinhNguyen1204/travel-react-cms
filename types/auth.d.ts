@@ -1,5 +1,5 @@
 type AuthType = {
-  user?: null | User; 
-  token: string | null; 
+  user?: null | User;
+  token: string | null;
   isAuthenticated: boolean;
-}
+};

@@ -1,8 +1,9 @@
-import PublicLayout from 'layouts/PublicLayout';
-import { Navigate } from 'react-router-dom';
-import { RoutePath } from 'shared/constants/RouteConst';
-import LoginView from './views/Login';
-import RegisterView from './views/Register';
+import PublicLayout from "layouts/PublicLayout";
+import { Navigate } from "react-router-dom";
+import { RoutePath } from "shared/constants/RouteConst";
+
+import LoginView from "./views/Login";
+import RegisterView from "./views/Register";
 
 export const AuthRoutes = [
   {
@@ -11,7 +12,7 @@ export const AuthRoutes = [
     children: [
       {
         exact: true,
-        path: '',
+        path: "",
         element: <Navigate to={RoutePath.Login} replace={true} />,
       },
       {
@@ -27,4 +28,4 @@ export const AuthRoutes = [
   },
 ];
 
-export * from './storage';
+export * from "./storage";

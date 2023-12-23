@@ -1,6 +1,7 @@
-import { useGetProductsQuery } from 'features/products/services';
-import LoadingIndicator from 'shared/components/LoadingIndicator';
-import './style.scss';
+import { useGetProductsQuery } from "features/products/services";
+import LoadingIndicator from "shared/components/LoadingIndicator";
+
+import "./style.scss";
 
 const ProductManagement = () => {
   // const { data, isLoading } = useGetProductsQuery();

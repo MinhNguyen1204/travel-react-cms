@@ -1,6 +1,5 @@
 interface ISideBarProps {
   sideBar: ISideBarData[];
-
 }
 
 interface ISideBarData {
@@ -11,6 +10,6 @@ interface ISideBarData {
 }
 
 interface ISideBarLinkGroupProps {
-  children: (fnc: () => void, open: boolean) => React.ReactNode,
-  activeCondition: boolean,
+  children: (fnc: () => void, open: boolean) => React.ReactNode;
+  activeCondition: boolean;
 }

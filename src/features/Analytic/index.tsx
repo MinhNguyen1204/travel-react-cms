@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const AnalyticView = () => {
-  return (
-    <div>
-      Analytic page...
-    </div>
-  );
+  return <div>Analytic page...</div>;
 };
 
 export default AnalyticView;

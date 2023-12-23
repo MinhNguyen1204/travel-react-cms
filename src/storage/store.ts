@@ -1,10 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { AppMiddleware, AppQueries, AppSlices } from "features";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { combineReducers } from "redux";
 import logger from "redux-logger";
-import { AppMiddleware, AppQueries, AppSlices } from "features";
-import loader from "storage/slices/loader";
 import { rtkQueryErrorLogger } from "shared/middlewares/errorToast";
+import loader from "storage/slices/loader";
+
+import { configureStore } from "@reduxjs/toolkit";
 
 export const rootReducer = combineReducers({
   // RTK slices
@@ -12,7 +13,7 @@ export const rootReducer = combineReducers({
   // App slices
   ...AppSlices,
   // RTK queries
-  ...AppQueries
+  ...AppQueries,
 });
 
 const store = configureStore({

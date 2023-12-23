@@ -1,6 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { UserRole } from 'features/authen/constants';
-import authQuery from 'features/authen/services';
+import { UserRole } from "features/authen/constants";
+import authQuery from "features/authen/services";
+import { removeLocalByKey, setLocal } from "shared/utils/Local";
+
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: AuthType = {
   token: null,
@@ -9,11 +11,11 @@ const initialState: AuthType = {
 };
 
 const slice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     logout: () => {
-      localStorage.removeItem('token');
+      removeLocalByKey("token");
       return initialState;
     },
   },
@@ -25,12 +27,15 @@ const slice = createSlice({
         state.user = action.payload;
       }
     );
-    builder.addMatcher(authQuery.endpoints.login.matchFulfilled, (state, action) => {
-      state.token = action.payload.token;
-      state.isAuthenticated = true;
-      state.user = { ...action.payload, role: UserRole.ADMIN }; // Fake role
-      localStorage.setItem('token', action.payload.token);
-    });
+    builder.addMatcher(
+      authQuery.endpoints.login.matchFulfilled,
+      (state, action) => {
+        state.token = action.payload.token;
+        state.isAuthenticated = true;
+        state.user = { ...action.payload, role: UserRole.ADMIN }; // Fake role
+        setLocal<string>("token", action.payload.token);
+      }
+    );
   },
 });
 

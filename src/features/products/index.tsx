@@ -1,8 +1,9 @@
-import { UserRole } from 'features/authen/constants';
-import PrivateLayout from 'layouts/PrivateLayout';
-import ProtectedRoute from 'shared/components/ProtectedRoute';
-import { RoutePath, RouteRoles } from 'shared/constants/RouteConst';
-import ProductManagementView from './views/ProductManagment';
+import { UserRole } from "features/authen/constants";
+import PrivateLayout from "layouts/PrivateLayout";
+import ProtectedRoute from "shared/components/ProtectedRoute";
+import { RoutePath, RouteRoles } from "shared/constants/RouteConst";
+
+import ProductManagementView from "./views/ProductManagment";
 
 export const ProductsRoutes = [
   {
@@ -15,7 +16,6 @@ export const ProductsRoutes = [
           <PrivateLayout roles={RouteRoles[RoutePath.Products]}>
             <ProductManagementView />
           </PrivateLayout>
-
         ),
       },
     ],

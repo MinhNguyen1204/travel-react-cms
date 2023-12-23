@@ -3,12 +3,10 @@ export const getFirstPathBySideBar = (data: ISideBarData[]): string => {
     if (!data[i].children?.length) {
       return data[i].path;
     }
-    const childPath = data[i].children?.find(item => item.path)?.path;
+    const childPath = data[i].children?.find((item) => item.path)?.path;
     if (childPath) {
       return childPath;
     }
-
-
   }
   return "/404";
-}
+};

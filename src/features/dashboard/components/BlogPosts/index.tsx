@@ -1,13 +1,10 @@
 import BlogPostItem from "../BlogPostItem";
 
-
 const BlogPosts = ({ posts }: { posts: PostType[] }) => (
   <>
-    {
-      posts.map((post) => (
-        <BlogPostItem key={post.id} post={post} />
-      ))
-    }
+    {posts.map((post) => (
+      <BlogPostItem key={post.id} post={post} />
+    ))}
   </>
 );
 
