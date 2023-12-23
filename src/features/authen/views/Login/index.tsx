@@ -5,8 +5,8 @@ import { useState } from 'react';
 
 const Login = () => {
   const [doLogin, { isSuccess }] = useLoginMutation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('eve.holt@reqres.in');
+  const [password, setPassword] = useState('cityslicka');
   const onChangeEmail = (e: any) => {
     setEmail(e.target.value);
   };

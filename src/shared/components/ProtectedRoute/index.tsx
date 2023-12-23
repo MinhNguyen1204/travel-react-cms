@@ -1,29 +1,37 @@
 import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
 import { getIsAuthenticated } from "features/authen/storage";
 // import AccessDenied from '../../views/AccessDenied/index';
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import PrivateLayout from "layouts/PrivateLayout";
+import React, { useEffect } from "react";
+import { useMeQuery } from "features/auth/services";
+import useDidUpdate from "hooks/useDidUpdate";
 
 const ProtectedRoute = ({
   redirectPath = '/auth/login',
   children,
-  roles
-}: { redirectPath?: string, children: any, roles?: string[]}) => {
-  
-  const isAuthenticated = useSelector(getIsAuthenticated);
-  console.log('PrivateLayout isLoggedIn: ', isAuthenticated);
-  // TODO: uncomment if need to check permissions 
-  // const userInfo = useSelector(getUserInfo);
-  // const userHasRequiredRole = !roles || (userInfo && roles.includes(userInfo.role) ? true : false);
-  
-  if (!isAuthenticated) {
-    return <Navigate to={redirectPath} replace />;
+}: { redirectPath?: string, children?: React.ReactNode }) => {
+
+  const { data: user, isLoading: userLoading, isError } = useMeQuery({
+    token: localStorage.getItem("token") || "",
+  });
+
+  const navigate = useNavigate();
+
+
+  useDidUpdate(() => {
+    if (!user) {
+      navigate("/auth/login");
+      return;
+    }
+  }, [user, isError])
+
+  if (userLoading) {
+    return <div>Loading...</div>;
   }
 
-  // if (isAuthenticated && !userHasRequiredRole) {
-  //   return <AccessDenied />;
-  // }
+  return <Outlet />
 
-  return children ? children : <Outlet />;
 };
 
 export default ProtectedRoute;

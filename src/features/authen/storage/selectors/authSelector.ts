@@ -5,4 +5,6 @@ export const getIsAuthenticated = (state: AppState) => {
   return !!token || state.auth.isAuthenticated
 };
 
-export const getUserInfo = (state: AppState) => state.auth.user;
+
+export const getUserInfo = (state: AppState): IUser => state.auth.user;
+

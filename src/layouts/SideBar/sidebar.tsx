@@ -1,41 +1,40 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
+
+
+import SidebarLinkGroup from "./sidebar-group";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import SidebarLinkGroup from './sidebar-group';
 import { Link } from 'react-router-dom';
 
-const SideBar = ({ sidebarOpen, setSidebarOpen, sidebarData }: ISideBarProps) => {
-  const pathname: string = '/';
-  const asPath = '/';
+const SideBar = ({ sideBar }: ISideBarProps) => {
+  const { pathname } = useLocation()
   const trigger = useRef(null);
   const sidebar = useRef(null);
-
-  const getAsPath = asPath.replace('[locale]', 'en');
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
 
   const _makeGroup = () => {
-    if (sidebarData.length === 0) {
-      return null;
-    }
+    if (sideBar.length === 0) return null;
 
-    return sidebarData.map((sb, i) => {
+    return sideBar.map((sb, idx) => {
       if (!sb.children?.length) {
         return (
-          <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${getAsPath.includes(sb.path) && 'bg-slate-900'}`} key={i}>
+          <li key={sb.path} className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes(sb.path) && "bg-slate-900"}`}>
             <Link
               to={sb.path}
-              className={`block text-slate-200 truncate transition duration-150 ${
-                getAsPath.includes(sb.path) ? 'hover:text-slate-200' : 'hover:text-white'
-              }`}
+              className={`block text-slate-200 truncate transition duration-150 ${pathname.includes(sb.path) ? "hover:text-slate-200" : "hover:text-white"
+                }`}
             >
               <div className="flex items-center justify-between">
                 <div className="grow flex items-center">
                   <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                     <path
-                      className={`fill-current ${getAsPath.includes(sb.path) ? 'text-indigo-500' : 'text-slate-600'}`}
+                      className={`fill-current ${pathname.includes(sb.path) ? "text-indigo-500" : "text-slate-600"}`}
                       d="M14.5 7c4.695 0 8.5 3.184 8.5 7.111 0 1.597-.638 3.067-1.7 4.253V23l-4.108-2.148a10 10 0 01-2.692.37c-4.695 0-8.5-3.184-8.5-7.11C6 10.183 9.805 7 14.5 7z"
                     />
                     <path
-                      className={`fill-current ${getAsPath.includes(sb.path) ? 'text-indigo-300' : 'text-slate-400'}`}
+                      className={`fill-current ${pathname.includes(sb.path) ? "text-indigo-300" : "text-slate-400"}`}
                       d="M11 1C5.477 1 1 4.582 1 9c0 1.797.75 3.45 2 4.785V19l4.833-2.416C8.829 16.85 9.892 17 11 17c5.523 0 10-3.582 10-8s-4.477-8-10-8z"
                     />
                   </svg>
@@ -48,8 +47,11 @@ const SideBar = ({ sidebarOpen, setSidebarOpen, sidebarData }: ISideBarProps) =>
           </li>
         );
       }
+      console.log("@@----------");
+      console.log("@@path name: ", pathname);
+      console.log("@@path:", sb.path)
       return (
-        <SidebarLinkGroup key={sb.title} activeCondition={false}>
+        <SidebarLinkGroup key={sb.title} activeCondition={pathname.includes(sb.path)}>
           {(handleClick, open) => {
             return (
               <React.Fragment>
@@ -105,12 +107,18 @@ const SideBar = ({ sidebarOpen, setSidebarOpen, sidebarData }: ISideBarProps) =>
   const _makeChildren = (c: ISideBarData[]) => {
     if (!c.length) return null;
 
-    return c.map((item, i) => {
-      const isActive = getAsPath === item.path;
+    return c.map((item => {
+      const isActive = pathname === item.path;
       return (
-        <li className="mb-1 last:mb-0" key={i}>
-          <Link to={item.path} className={`block transition duration-150 truncate ${isActive ? ' text-indigo-500' : ''}`}>
-            <span className={'text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200'}>{item.title}</span>
+        <li key={item.path} className="mb-1 last:mb-0">
+          <Link
+
+            to={item.path}
+            className={`block transition duration-150 truncate ${isActive ? "text-white" : "text-gray-400"}`}
+          >
+            <span className={"text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"}>
+              {item.title}
+            </span>
           </Link>
         </li>
       );
@@ -150,7 +158,8 @@ const SideBar = ({ sidebarOpen, setSidebarOpen, sidebarData }: ISideBarProps) =>
             </svg>
           </button>
           {/* Logo */}
-          <Link to="/" className="block">
+          {/* @ts-expect-error Server Component */}
+          <Link href="/" className="block">
             <svg width="32" height="32" viewBox="0 0 32 32">
               <defs>
                 <linearGradient x1="28.538%" y1="20.229%" x2="100%" y2="108.156%" id="logo-a">

@@ -1,9 +1,9 @@
-import { defineConfig, loadEnv } from 'vite';
+import { UserConfig, defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode }): UserConfig => {
   const env = loadEnv(mode, process.cwd(), '')
   return {
     plugins: [
@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       open: true,
-      port: env.PORT,
+      port: parseInt(env.PORT),
     }
   }
 });

@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { DummyUser } from 'shared/constants/UserList';
 
 interface UserInfo {
   email: string
@@ -24,6 +25,14 @@ const authQuery = createApi({
         method: 'POST',
         body: credentials,
       })
+    }),
+    me: builder.query<any, { token: string }>({
+
+      query: (body) => `/${body.token}`,
+      transformResponse(baseQueryReturnValue, meta, arg) {
+        const token = localStorage.getItem("token") || "";
+        return DummyUser[token];
+      },
     })
   }),
 });
@@ -32,5 +41,6 @@ export default authQuery;
 
 export const {
   useLoginMutation,
-  useRegisterMutation
+  useRegisterMutation,
+  useMeQuery,
 } = authQuery;
