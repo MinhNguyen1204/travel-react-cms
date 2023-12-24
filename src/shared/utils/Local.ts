@@ -9,7 +9,7 @@ export const getLocal = <T>(key: string): T | null => {
 
 export const setLocal = <T>(key: string, data: T): void => {
   if (!window || !key) return;
-  window.localStorage.set(key, JSON.stringify(data));
+  window.localStorage.setItem(key, JSON.stringify(data));
 };
 
 export const removeLocalByKey = (key: string): void => {

@@ -8,6 +8,9 @@ import NoMatch from "shared/views/NoMatch";
 import i18n from "../i18n";
 
 import "assets/scss/app.scss";
+
+import "../prototype";
+
 function App() {
   return (
     <I18nextProvider i18n={i18n}>

@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useMeQuery } from "features/authen/services";
-import { getIsAuthenticated } from "features/authen/storage";
 import useDidUpdate from "hooks/useDidUpdate";
-import PrivateLayout from "layouts/PrivateLayout";
-import { useSelector } from "react-redux";
+import { sideBarData } from "layouts/PrivateLayout";
 // import AccessDenied from '../../views/AccessDenied/index';
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { sideBarData } from "shared/constants/SideBarConst";
 import { getLocal } from "shared/utils/Local";
 import { getFirstPathBySideBar } from "shared/utils/Path";
 
