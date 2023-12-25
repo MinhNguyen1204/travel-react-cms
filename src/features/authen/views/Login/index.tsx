@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoginMutation } from "features/authen/services";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate, useRoutes } from "react-router-dom";
 import { RoutePath } from "shared/constants/RouteConst";
 
 const Login = () => {
   const [doLogin, { isSuccess }] = useLoginMutation();
   const [email, setEmail] = useState("eve.holt@reqres.in");
   const [password, setPassword] = useState("cityslicka");
+  const navigate = useNavigate();
   const onChangeEmail = (e: any) => {
     setEmail(e.target.value);
   };
@@ -16,7 +17,14 @@ const Login = () => {
   const onLogin = () => {
     doLogin({ email, password });
   };
-  return !isSuccess ? (
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log("isSuccess: ", isSuccess);
+      navigate(`/${RoutePath.Products}`);
+    }
+  }, [isSuccess]);
+  return (
     <div className="w-screen flex h-screen justify-center items-center">
       <form
         name="loginForm"
@@ -72,8 +80,6 @@ const Login = () => {
         </div>
       </form>
     </div>
-  ) : (
-    <Navigate to={`/${RoutePath.Dashboard}`} replace />
   );
 };
 

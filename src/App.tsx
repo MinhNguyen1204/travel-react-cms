@@ -22,7 +22,7 @@ function App() {
           element: <NoMatch />,
         },
       ])}
-      <LoadingIndicator />
+      {/* <LoadingIndicator /> */}
     </I18nextProvider>
   );
 }

@@ -5,30 +5,37 @@ const productsQuery = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://dummyjson.com",
   }),
+  tagTypes: ["Products"],
   endpoints: (builder) => ({
-    getProducts: builder.query<any, void>({
-      query: () => "products",
+    getProducts: builder.query<any, string>({
+      query: (page: string) =>
+        `products?limit=10&skip=${
+          (Number(page) - 1) * 10
+        }&select=title,price,brand,category`,
+      transformResponse: (response: { products: any }) => {
+        console.log("response.: ", response);
+        return response.products;
+      },
+      providesTags: ["Products"],
     }),
-    createProduct: builder.mutation<{ title: string }, Partial<any>>({
+    createProduct: builder.mutation<any, { title: string }>({
       query: (credentials) => ({
-        url: `products/add`,
+        url: "products/add",
         method: "POST",
         body: credentials,
       }),
     }),
-    getProductById: builder.query<string, void>({
+    getProductById: builder.query<any, string>({
       query: (id) => `products/${id}`,
     }),
-    deleteProductById: builder.mutation<string, Partial<any>>({
+    deleteProductById: builder.mutation<any, string>({
       query: (id) => ({
         url: `products/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Products"],
     }),
-    updateProductById: builder.mutation<
-      { id: string; title: string },
-      Partial<any>
-    >({
+    updateProductById: builder.mutation<any, { id: string; title: string }>({
       query: ({ title, id }) => ({
         url: `products/${id}`,
         method: "PUT",
@@ -40,4 +47,5 @@ const productsQuery = createApi({
 
 export default productsQuery;
 
-export const { useGetProductsQuery } = productsQuery;
+export const { useGetProductsQuery, useDeleteProductByIdMutation } =
+  productsQuery;

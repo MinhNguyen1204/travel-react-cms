@@ -13,7 +13,7 @@ export default defineConfig(({ mode }): UserConfig => {
     },
     server: {
       open: true,
-      port: parseInt(env.PORT),
+      port: parseInt(env.PORT) || 5173,
     },
   };
 });

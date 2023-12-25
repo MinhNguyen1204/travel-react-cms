@@ -9,4 +9,4 @@ const isFulfilled = (action: AnyAction): action is PayloadAction<any> =>
 const isRejected = (action: AnyAction): action is PayloadAction<any> =>
   action.type.endsWith("/rejected");
 
-export { isPending, isFulfilled, isRejected };
+export { isFulfilled, isPending, isRejected };

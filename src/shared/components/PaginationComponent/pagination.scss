@@ -1,0 +1,61 @@
+.pagination-container {
+    @apply flex items-center -space-x-px h-8 text-sm list-none;
+
+    .pagination-item {
+        a {
+            @apply flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300;
+
+            &:hover {
+                @apply bg-gray-100 text-gray-700;
+            }
+        }
+
+        &.dots:hover {
+            background-color: transparent;
+            cursor: default;
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+        }
+
+        &.selected {
+            a {
+                @apply z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50;
+            }
+
+            &:hover {
+                @apply bg-blue-100 text-blue-700;
+            }
+        }
+
+        &.arrow {
+            &.left {
+                a {
+                    @apply rounded-s-lg;
+                }
+            }
+
+            &.right {
+                a {
+                    @apply rounded-e-lg;
+                }
+            }
+        }
+
+        &.disabled {
+            pointer-events: none;
+
+            .arrow::before {
+                border-right: 0.12em solid rgba(0, 0, 0, 0.43);
+                border-top: 0.12em solid rgba(0, 0, 0, 0.43);
+            }
+
+            &:hover {
+                background-color: transparent;
+                cursor: default;
+            }
+        }
+    }
+}

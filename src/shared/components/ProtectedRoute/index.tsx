@@ -24,7 +24,7 @@ const ProtectedRoute = () => {
     token: getLocal("token") || "",
   });
 
-  const isEmtyRoute = pathname.split("/").length < 3;
+  const isEmtyRoute = pathname.split("/").length < 2;
 
   useDidUpdate(() => {
     if (!user) {

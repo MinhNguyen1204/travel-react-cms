@@ -21,13 +21,6 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addMatcher(
-      authQuery.endpoints.me.matchFulfilled,
-      (state, action) => {
-        state.isAuthenticated = true;
-        state.user = action.payload;
-      }
-    );
-    builder.addMatcher(
       authQuery.endpoints.login.matchFulfilled,
       (state, action) => {
         state.token = action.payload.token;
