@@ -1,14 +1,14 @@
 import AnalyticView from "features/Analytic";
-import { UserRole } from "features/authen/constants";
 import PrivateLayout from "layouts/PrivateLayout";
 import { RouteObject } from "react-router-dom";
 import ProtectedRoute from "shared/components/ProtectedRoute";
-import { RoutePath, RouteRoles } from "shared/constants/RouteConst";
+import {
+  DashboardPath,
+  RoutePath,
+  RouteRoles,
+} from "shared/constants/RouteConst";
 
 import DashboardView from "./views/DashboardView";
-
-const DashboardMain = "main";
-const DashboardAnalytic = "analytic";
 
 export const DashboardRoutes: RouteObject[] = [
   {
@@ -16,7 +16,7 @@ export const DashboardRoutes: RouteObject[] = [
     element: <ProtectedRoute />,
     children: [
       {
-        path: DashboardMain,
+        path: DashboardPath.Main,
         element: (
           <PrivateLayout roles={RouteRoles[RoutePath.Dashboard]}>
             <DashboardView />
@@ -24,7 +24,7 @@ export const DashboardRoutes: RouteObject[] = [
         ),
       },
       {
-        path: DashboardAnalytic,
+        path: DashboardPath.Analytic,
         element: (
           <PrivateLayout roles={RouteRoles[RoutePath.Dashboard]}>
             <AnalyticView />

@@ -2,9 +2,9 @@ import React, { useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import BreadCrumb from "shared/components/BreadCrumb";
 
-import UserMenuHeader from "../../../features/header/UserMenuHeader";
+import UserMenuHeader from "./UserMenuHeader";
 
-function Header({ sidebarOpen, setSidebarOpen }) {
+function Header({ sidebarOpen, setSidebarOpen }: any) {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const { pathname } = useLocation();
   console.log("pathname: ", pathname);

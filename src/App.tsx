@@ -1,8 +1,7 @@
-import { AppRoutes } from "features";
 import { DashboardRoutes } from "features/dashboard";
 import { I18nextProvider } from "react-i18next";
 import { useRoutes } from "react-router-dom";
-import LoadingIndicator from "shared/components/LoadingIndicator";
+import { AppRoutes } from "router";
 import NoMatch from "shared/views/NoMatch";
 
 import i18n from "../i18n";

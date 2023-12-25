@@ -9,9 +9,11 @@ export enum RoutePath {
   Products = "products",
 }
 
-export const RouteRoles = {
-  home: [UserRole.ADMIN],
-  blog: [UserRole.ADMIN],
-  dashboard: [UserRole.ADMIN],
-  products: [UserRole.ADMIN],
+export enum DashboardPath {
+  Main = "main",
+  Analytic = "Analytic",
+}
+export const RouteRoles: { [key: string]: UserRole[] } = {
+  "/dashboard/main": [UserRole.ADMIN],
+  "/products": [UserRole.USER],
 };

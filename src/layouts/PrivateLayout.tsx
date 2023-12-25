@@ -67,9 +67,12 @@ const PrivateLayout = ({ children }: any) => {
   useEffect(() => {
     if (user === null) return;
     const newSideBar = onRoleCheck(sideBarData);
-    const currentRouteRoles = RouteRoles[RoutePath["Products"]];
+    const currentRouteRoles = RouteRoles[pathname];
 
-    if (!currentRouteRoles.includes(user.role as UserRole)) {
+    if (
+      user.role != UserRole.ADMIN &&
+      !currentRouteRoles.includes(user.role as UserRole)
+    ) {
       redirect(newSideBar);
     }
     setSidebarData(newSideBar);
