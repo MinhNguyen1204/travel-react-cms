@@ -1,20 +1,16 @@
-import { useEffect } from "react";
 import {
   useDeleteProductByIdMutation,
   useGetProductsQuery,
 } from "features/products/services";
-import LoadingIndicator from "shared/components/LoadingIndicator";
+import { useNavigate } from "react-router-dom";
 import TableComponent from "shared/components/TableComponent";
+import { RoutePath } from "shared/constants/RouteConst";
 
 import "./style.scss";
 
 const ProductManagement = () => {
-  //   const { data, isLoading } = useGetProductsQuery();
+  const navigate = useNavigate();
   const [deleteProductById] = useDeleteProductByIdMutation();
-  // useEffect(() => {
-  //   console.log("isLoading: ", isLoading);
-  //   console.log("data: ", data);
-  // }, [isLoading]);
 
   const heads: HeadCell<ProductItem>[] = [
     {
@@ -38,11 +34,24 @@ const ProductManagement = () => {
       label: "Price",
     },
   ];
+
+  const onClickCreateProduct = () => {
+    navigate(`/${RoutePath.Products}/create`);
+  };
+  const onClickEditProduct = (item: ProductItem) => {
+    navigate(`/${RoutePath.Products}/${item.id}`);
+  };
+  const onClickDeleteProduct = (item: ProductItem) => {
+    deleteProductById(item.id);
+  };
+
   return (
     <>
       <div className="flex justify-between">
         <div className="">Products Page</div>
-        <button className="rounded-xl bg-blue-500 px-5 py-3 text-base font-medium text-white transition duration-200 hover:bg-blue-600 active:bg-blue-700 ">
+        <button
+          onClick={onClickCreateProduct}
+          className="rounded-xl bg-blue-500 px-5 py-3 text-base font-medium text-white transition duration-200 hover:bg-blue-600 active:bg-blue-700 ">
           Create Product
         </button>
       </div>
@@ -51,12 +60,10 @@ const ProductManagement = () => {
         // rows={data.products}
         useQuery={useGetProductsQuery}
         actions={[
-          { name: "Edit", callback: () => void 0 },
+          { name: "Edit", callback: onClickEditProduct },
           {
             name: "Delete",
-            callback: (product) => {
-              deleteProductById(product.id);
-            },
+            callback: onClickDeleteProduct,
           },
         ]}
       />

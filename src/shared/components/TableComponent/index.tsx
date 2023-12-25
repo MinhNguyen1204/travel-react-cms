@@ -49,29 +49,33 @@ export function TableComponent<T>({
                           </td>
                         );
                       })}
-                      {actions.length > 0 &&
-                        actions.map((item, i) => {
-                          if (item.name === "Edit") {
-                            return (
-                              <td className="px-1 py-2" key={i}>
-                                <button
-                                  className="rounded-xl bg-green-500 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-green-600 active:bg-green-700"
-                                  onClick={() => item.callback(row)}>
-                                  {item.name}
-                                </button>
-                              </td>
-                            );
-                          }
-                          if (item.name === "Delete") {
-                            return (
-                              <td className="px-1 py-2" key={i}>
-                                <button className="rounded-xl bg-red-500 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-red-600 active:bg-red-700 dark:bg-red-400 dark:text-white dark:hover:bg-red-300 dark:active:bg-red-200">
-                                  {item.name}
-                                </button>
-                              </td>
-                            );
-                          }
-                        })}
+                      <td className="px-1 py-2">
+                        <div className="flex gap-2">
+                          {actions.length > 0 &&
+                            actions.map((item, i) => {
+                              if (item.name === "Edit") {
+                                return (
+                                  <button
+                                    key={i}
+                                    className="rounded-xl bg-green-500 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-green-600 active:bg-green-700"
+                                    onClick={() => item.callback(row)}>
+                                    {item.name}
+                                  </button>
+                                );
+                              }
+                              if (item.name === "Delete") {
+                                return (
+                                  <button
+                                    onClick={() => item.callback(row)}
+                                    key={i}
+                                    className="rounded-xl bg-red-500 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-red-600 active:bg-red-700 dark:bg-red-400 dark:text-white dark:hover:bg-red-300 dark:active:bg-red-200">
+                                    {item.name}
+                                  </button>
+                                );
+                              }
+                            })}
+                        </div>
+                      </td>
                     </tr>
                   );
                 })}

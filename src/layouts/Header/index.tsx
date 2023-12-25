@@ -7,7 +7,6 @@ import UserMenuHeader from "./UserMenuHeader";
 function Header({ sidebarOpen, setSidebarOpen }: any) {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const { pathname } = useLocation();
-  console.log("pathname: ", pathname);
 
   const breadCrumb = useMemo(() => {
     return pathname.split("/").filter(Boolean);
