@@ -1,9 +1,10 @@
-import commonEN from "assets/translations/en/common.json";
-import commonJP from "assets/translations/jp/common.json";
-import commonVI from "assets/translations/vi/common.json";
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
+
+import commonEN from "./public/translations/en/common.json";
+import commonJP from "./public/translations/jp/common.json";
+import commonVI from "./public/translations/vi/common.json";
 
 i18n
   // detect user language

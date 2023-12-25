@@ -7,7 +7,6 @@
       "layouts/*" : ["layouts/*"],
       "shared/*"  : ["shared/*"],
       "storage/*" : ["storage/*"],
-      "assets/*"  : ["assets/*"],
       "icons/*": ["icons/*"]
     }
   }

@@ -7,7 +7,7 @@ import NoMatch from "shared/views/NoMatch";
 
 import i18n from "../i18n";
 
-import "assets/scss/app.scss";
+import "../public/scss/app.scss";
 import "react-toastify/dist/ReactToastify.css";
 
 import "../prototype";
