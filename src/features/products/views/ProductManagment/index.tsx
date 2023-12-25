@@ -40,7 +40,12 @@ const ProductManagement = () => {
   ];
   return (
     <>
-      <div className="">Products Page</div>
+      <div className="flex justify-between">
+        <div className="">Products Page</div>
+        <button className="rounded-xl bg-blue-500 px-5 py-3 text-base font-medium text-white transition duration-200 hover:bg-blue-600 active:bg-blue-700 ">
+          Create Product
+        </button>
+      </div>
       <TableComponent
         heads={heads}
         // rows={data.products}
