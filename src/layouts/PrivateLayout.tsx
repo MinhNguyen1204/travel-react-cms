@@ -1,25 +1,41 @@
 import { useEffect, useState } from "react";
 import { getUserInfo } from "features/authen";
 import { UserRole } from "features/authen/constants";
+import { MarkerIcon } from "icons/MarkerIcon";
+import { MessageIcon } from "icons/MessageIcon";
+import Header from "layouts/Header";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import SideBar from "shared/components/SideBar/SideBar";
 import { RoutePath, RouteRoles } from "shared/constants/RouteConst";
-import { sideBarData } from "shared/constants/SideBarConst";
 import { getFirstPathBySideBar } from "shared/utils/Path";
 
-import SideBar from "./SideBar/sidebar";
-import Header from "./Header";
 const lngs = {
   en: { nativeName: "English" },
   jp: { nativeName: "Japan" },
   vi: { nativeName: "Vietnam" },
 };
 
-interface IProps {
-  children: React.ReactNode;
-  roles: string[];
-}
+export const sideBarData: ISideBarData[] = [
+  {
+    title: "Dashboard",
+    path: "/dashboard",
+    roles: ["user"],
+    icon: <MarkerIcon width={24} height={24} />,
+    children: [
+      { title: "Main", path: "/dashboard/main", roles: ["user"] },
+      { title: "Analytics", path: "/dashboard/analytic", roles: ["admin"] },
+    ],
+  },
+  {
+    title: "Products",
+    icon: <MessageIcon />,
+    path: "/products",
+    roles: ["admin"],
+  },
+];
+
 const PrivateLayout = ({ children }: any) => {
   const { t } = useTranslation();
   const navigate = useNavigate();

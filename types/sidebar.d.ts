@@ -7,6 +7,7 @@ interface ISideBarData {
   children?: ISideBarData[];
   path: string;
   roles?: string[];
+  icon?: JSX.Element;
 }
 
 interface ISideBarLinkGroupProps {
