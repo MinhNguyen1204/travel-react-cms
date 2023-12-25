@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
+import BreadCrumb from "shared/components/BreadCrumb";
 
 import UserMenuHeader from "../../../features/header/UserMenuHeader";
 
 function Header({ sidebarOpen, setSidebarOpen }) {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const { pathname } = useLocation();
+  console.log("pathname: ", pathname);
+
+  const breadCrumb = useMemo(() => {
+    return pathname.split("/").filter(Boolean);
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 bg-white dark:bg-[#182235] border-b border-slate-200 dark:border-slate-700 z-30">
@@ -30,6 +38,8 @@ function Header({ sidebarOpen, setSidebarOpen }) {
                 <rect x="4" y="17" width="16" height="2" />
               </svg>
             </button>
+
+            <BreadCrumb data={breadCrumb} />
           </div>
 
           {/* Header: Right side */}
